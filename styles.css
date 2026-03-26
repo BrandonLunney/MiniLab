@@ -1,124 +1,34 @@
 body {
+    font-family: Arial;
+    background: #111;
+    color: white;
     margin: 0;
-    font-family: 'Press Start 2P', monospace;
-    background: linear-gradient(135deg, #0f0f1a, #1a1a2e);
-    color: #fff;
+    padding: 0;
 }
 
 header {
     text-align: center;
-    padding: 2rem;
-    background: #111;
-    border-bottom: 4px solid #e60012; /* NES red */
+    padding: 1rem;
+    border-bottom: 2px solid red;
 }
 
-h1 {
-    font-size: 1.5rem;
-    color: #e60012;
-}
-
-h2 {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-}
-
-.form-section {
-    padding: 2rem;
-    background: #1c1c2b;
-    text-align: center;
-}
-
-form input, form select {
-    padding: 0.5rem;
-    margin: 0.5rem;
-    border: none;
-    outline: none;
-    font-family: inherit;
-}
-
-button {
-    background: #e60012;
-    color: white;
-    border: none;
-    padding: 0.7rem 1rem;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #ff2e2e;
-}
-
-.collection {
-    padding: 2rem;
+header a {
+    color: #00aaff;
+    margin-left: 1rem;
+    text-decoration: none;
 }
 
 #gameList {
-    display: block;
-}
-
-.card {
-    margin-bottom: 1rem; /* space between cards */
-}
-
-.card {
-    background: #222;
-    padding: 1rem;
-    border-left: 5px solid #00aaff; /* SNES blue */
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-
-.card h3 {
-    font-size: 0.8rem;
-}
-
-.card p {
-    font-size: 0.6rem;
-}
-
-.card:hover {
-    transform: scale(1.01);
-    box-shadow: 0 0 15px #00aaff;
-}
-
-body::after {
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.03),
-        rgba(255,255,255,0.03) 2px,
-        transparent 2px,
-        transparent 4px
-    );
-    pointer-events: none;
-}
-
-.card {
-    background: #222;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-left: 5px solid #00aaff;
-}
-
-.card-content {
     display: flex;
-    justify-content: space-between; /* left content / right button */
-    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
 }
 
-.remove-btn {
-    background: #ff3333;
-    color: white;
-    border: none;
-    padding: 0.4rem 0.6rem;
-    cursor: pointer;
-    font-size: 0.7rem;
-}
-
-.remove-btn:hover {
-    background: #ff6666;
+.card {
+    background: #222;
+    padding: 1rem;
+    border-left: 5px solid #00aaff;
 }
 
 .card-content {
@@ -129,14 +39,25 @@ body::after {
 
 .console-icon {
     width: 50px;
-    height: auto;
     margin-right: 1rem;
 }
 
+.nes-glow {
+    filter: drop-shadow(0 0 6px #e60012);
+}
+
+.snes-glow {
+    filter: drop-shadow(0 0 6px #00aaff);
+}
+
 .game-info {
-    flex-grow: 1; /* pushes button to the right */
+    flex-grow: 1;
 }
 
 .remove-btn {
-    margin-left: 1rem;
+    background: red;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
 }
