@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Retro Collection</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <h1>🎮 Retro Collection</h1>
+    <p>NES & SNES Library</p>
+</header>
+
+<section class="form-section">
+    <h2>Add Game</h2>
+    <form id="gameForm">
+        <input type="text" id="title" placeholder="Game Title" required>
+        <select id="console">
+            <option value="NES">NES</option>
+            <option value="SNES">SNES</option>
+        </select>
+        <input type="number" id="year" placeholder="Release Year">
+        <button type="submit">Add</button>
+    </form>
+</section>
+
+<section class="collection">
+    <h2>Your Collection</h2>
+    <div id="gameList"></div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
