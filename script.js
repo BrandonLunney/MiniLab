@@ -1,78 +1,46 @@
-const form = document.getElementById("gameForm");
 const gameList = document.getElementById("gameList");
 
-let games = [];
-
-// Load from database
-async function loadGames() {
-    const res = await fetch("api.php");
-    games = await res.json();
-    renderGames();
-}
+// Load games from localStorage
+let games = JSON.parse(localStorage.getItem("games")) || [];
 
 function getConsoleImage(consoleType) {
     return consoleType === "NES" ? "images/NES.png" : "images/SNES.png";
 }
 
-// Render games
 function renderGames() {
     gameList.innerHTML = "";
 
-    games.forEach((game) => {
+    games.forEach((game, index) => {
         const div = document.createElement("div");
         div.classList.add("card");
 
+        const glowClass = game.console === "NES" ? "nes-glow" : "snes-glow";
+
         div.innerHTML = `
             <div class="card-content">
-                <img class="console-icon" src="${getConsoleImage(game.console)}" />
+                <img class="console-icon ${glowClass}" src="${getConsoleImage(game.console)}" />
                 
                 <div class="game-info">
                     <h3>${game.title}</h3>
                     <p>${game.console} | ${game.year || "Unknown"}</p>
                 </div>
 
-                <button class="remove-btn" data-id="${game.id}">Remove</button>
+                <button class="remove-btn" data-index="${index}">Remove</button>
             </div>
         `;
 
         gameList.appendChild(div);
     });
 
-    // Remove from database
     document.querySelectorAll(".remove-btn").forEach(btn => {
-        btn.addEventListener("click", async (e) => {
-            const id = e.target.dataset.id;
-
-            await fetch(`api.php?id=${id}`, {
-                method: "DELETE"
-            });
-
-            loadGames();
+        btn.addEventListener("click", (e) => {
+            const i = e.target.dataset.index;
+            games.splice(i, 1);
+            localStorage.setItem("games", JSON.stringify(games));
+            renderGames();
         });
     });
 }
 
-// Handle form submit → SAVE TO DATABASE
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const newGame = {
-        title: document.getElementById("title").value,
-        console: document.getElementById("console").value,
-        year: document.getElementById("year").value
-    };
-
-    await fetch("api.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(newGame)
-    });
-
-    form.reset();
-    loadGames();
-});
-
-// Initial load
-loadGames();
+// Initial render
+renderGames();
